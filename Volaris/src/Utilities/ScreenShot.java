@@ -10,13 +10,15 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class ScreenShot {
-	public static void TakeScreenShot(WebDriver driver, String sLocation)
-			throws Exception {
-		String sTimeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
+	public static void TakeScreenShot(WebDriver driver, String sLocation) throws Exception {
 		
+		String sTimeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
 		try {
-			//Save file into specified location.
+			
+			/*
+			 * Save file into specified location.
+			 */
 			FileUtils.copyFile(scrFile, new File(sLocation+sTimeStamp));
 			System.out.println("Screenshot captured successfully");
 		} 

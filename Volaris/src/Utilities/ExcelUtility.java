@@ -1,77 +1,56 @@
 package Utilities;
 
 import java.io.FileInputStream;
-
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtility {
-
-	//create reference of XSSF class.
 	
-	public static XSSFSheet ExcelWSheet;
-
-	public static XSSFWorkbook ExcelWBook;
-
-	public static XSSFCell Cell;
-
-	public static XSSFRow Row;
-
-
-	public static void setExcelFile(String sPath, String sSheetName)
-			throws Exception {
-
-		try {
-
-			// Open the Excel file
-
-			FileInputStream ExcelFile = new FileInputStream(sPath);
-
-			// Access the required test data sheet
-
-			ExcelWBook = new XSSFWorkbook(ExcelFile);
-
-			ExcelWSheet = ExcelWBook.getSheet(sSheetName);
-
-		} catch (Exception e) {
-
-			throw (e);
-
-		}
-
-	}// End of setExcelFile
-
-	public static XSSFRow getRow(int iRowNum) {
-
-		return ExcelWSheet.createRow(iRowNum);
-
-	}// End of getRow
-
-	// This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num.
-
-	public static String getCellData(int iRowNum, int iColNum) throws Exception {
-
-		try {
-			Cell = ExcelWSheet.getRow(iRowNum).getCell(iColNum);
-			String CellData = Cell.getStringCellValue();
+	/*
+	 * create reference of XSSF class.
+	*/
+	public static XSSFWorkbook excelWorkBook;
+	public static XSSFSheet excelWorkSheet;
+	public static XSSFRow row;
+	public static XSSFCell cell;
+	
+	public static void setExcelFile(String path, String sheetName) throws Exception {
+		
+			/*
+			 * Open the Excel file
+			 */
+			FileInputStream excelFile = new FileInputStream(path);
 			
-			return CellData;
-
+			/*
+			 * Access the required test data sheet
+			 */
+			excelWorkBook = new XSSFWorkbook(excelFile);
+			excelWorkSheet = excelWorkBook.getSheet(sheetName);
+	}
+	public static XSSFRow getRow(int rowNum) {
+		return excelWorkSheet.createRow(rowNum);
+	}
+	
+	/*
+	 * This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num.
+	 */
+	public static String getCellData(int rowNum, int colNum) throws Exception {
+		try {
+			cell = excelWorkSheet.getRow(colNum).getCell(colNum);
+			String cellData = cell.getStringCellValue();
+			return cellData;
 		} catch (Exception e) {
 			return "";
 		}
-
-	}// End of getCellData
-
-	// This method is to write in the Excel cel
-
-	public static void setCellData(String sResult, XSSFRow newRow, int iColNum,
-			String File_TestData) throws Exception {
-
-		XSSFCell Cell = newRow.createCell(iColNum);
-		Cell.setCellValue(sResult);
-
+	}
+	
+	/*
+	 * This method is to write in the Excel cell
+	 */	
+	public static void setCellData(String result, XSSFRow newRow, int colNum, String file_TestData) throws Exception {
+		XSSFCell cell = newRow.createCell(colNum);
+		cell.setCellValue(result);
 	}
 }
