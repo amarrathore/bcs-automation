@@ -23,5 +23,6 @@
 	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-ooxml-3.16-beta2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-ooxml-schemas-3.16-beta2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-scratchpad-3.16-beta2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

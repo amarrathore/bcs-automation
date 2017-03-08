@@ -5,13 +5,11 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 /**
- * @author Amar
+ * @author BCS Technology
  */
 
 public class ExcelUtility {
-	
 	/*
 	 * create reference of XSSF class.
 	*/
@@ -21,25 +19,16 @@ public class ExcelUtility {
 	public static XSSFCell cell;
 	
 	public static void setExcelFile(String path, String sheetName) throws Exception {
-		
-			/*
-			 * Open the Excel file
-			 */
+			//Open the Excel file
 			FileInputStream excelFile = new FileInputStream(path);
-			
-			/*
-			 * Access the required test data sheet
-			 */
+			//Access the required test data sheet
 			excelWorkBook = new XSSFWorkbook(excelFile);
 			excelWorkSheet = excelWorkBook.getSheet(sheetName);
 	}
 	public static XSSFRow getRow(int rowNum) {
 		return excelWorkSheet.createRow(rowNum);
 	}
-	
-	/*
-	 * This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num.
-	 */
+	//This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num.
 	public static String getCellData(int rowNum, int colNum) throws Exception {
 		try {
 			cell = excelWorkSheet.getRow(colNum).getCell(colNum);
@@ -49,10 +38,7 @@ public class ExcelUtility {
 			return "";
 		}
 	}
-	
-	/*
-	 * This method is to write in the Excel cell
-	 */	
+	//This method is to write in the Excel cell
 	public static void setCellData(String result, XSSFRow newRow, int colNum, String file_TestData) throws Exception {
 		XSSFCell cell = newRow.createCell(colNum);
 		cell.setCellValue(result);

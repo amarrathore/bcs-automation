@@ -9,12 +9,12 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-public class ScreenShot {
-	public static void TakeScreenShot(WebDriver driver, String location) {
+public class ScreenShot{
+	public static void TakeScreenShot(WebDriver driver, String location){
 		
 		String timeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
 		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
-		try {
+		try{
 			
 			/*
 			 * Save file into specified location.
@@ -22,7 +22,7 @@ public class ScreenShot {
 			FileUtils.copyFile(sourceFile, new File(location+timeStamp));
 			System.out.println("Screenshot captured successfully");
 		} 
-		catch (IOException e) {
+		catch (IOException e){
 			e.printStackTrace();
 			System.out.println("error saving screenshot file");
 		}

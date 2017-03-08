@@ -27,17 +27,14 @@ public class ReadExcel_R {
    int totalRows = sheet.getLastRowNum();
    int totalColumns = sheet.getRow(0).getLastCellNum();
    completeData = new Object[totalRows + 1][totalColumns];
-    
-   for (int row = 0; row <= totalRows-1; row++) {
-    for (int column = 0; column <= totalColumns - 1;column++) {
+   for (int row = 0; row <totalRows; row++) {
+    for (int column = 0; column <totalColumns; column++) {
      XSSFCell currentCell = sheet.getRow(row).getCell(column);
-     
      int type;
      Object result;
      type = currentCell.getCellType();
      
      switch (type) {
-
      case Cell.CELL_TYPE_NUMERIC: //for numeric value
          result = currentCell.getNumericCellValue();
          break;
@@ -49,10 +46,10 @@ public class ReadExcel_R {
          break;
      default:  
          throw new RuntimeException("There is no support for this type of cell");                        
- }
+     		}
      return result.toString();
-}
-   }
+    	}
+   	}
   } catch (Exception e) {
    System.out.println("Excel file couldn't be read");
    System.out.println(e.getMessage());
