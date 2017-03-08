@@ -1,56 +1,30 @@
-package Utilities;
+package utilities;
 
-import java.io.FileInputStream;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
-public class ExcelUtility {
-	
-	/*
-	 * create reference of XSSF class.
-	*/
-	public static XSSFWorkbook excelWorkBook;
-	public static XSSFSheet excelWorkSheet;
-	public static XSSFRow row;
-	public static XSSFCell cell;
-	
-	public static void setExcelFile(String path, String sheetName) throws Exception {
+public class ScreenShot {
+	public static void TakeScreenShot(WebDriver driver, String location) throws Exception {
 		
-			/*
-			 * Open the Excel file
-			 */
-			FileInputStream excelFile = new FileInputStream(path);
+		String timeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
+		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
+		try {
 			
 			/*
-			 * Access the required test data sheet
+			 * Save file into specified location.
 			 */
-			excelWorkBook = new XSSFWorkbook(excelFile);
-			excelWorkSheet = excelWorkBook.getSheet(sheetName);
-	}
-	public static XSSFRow getRow(int rowNum) {
-		return excelWorkSheet.createRow(rowNum);
-	}
-	
-	/*
-	 * This method is to read the test data from the Excel cell, in this we are passing parameters as Row num and Col num.
-	 */
-	public static String getCellData(int rowNum, int colNum) throws Exception {
-		try {
-			cell = excelWorkSheet.getRow(colNum).getCell(colNum);
-			String cellData = cell.getStringCellValue();
-			return cellData;
-		} catch (Exception e) {
-			return "";
+			FileUtils.copyFile(sourceFile, new File(location+timeStamp));
+			System.out.println("Screenshot captured successfully");
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("error saving screenshot file");
 		}
-	}
-	
-	/*
-	 * This method is to write in the Excel cell
-	 */	
-	public static void setCellData(String result, XSSFRow newRow, int colNum, String file_TestData) throws Exception {
-		XSSFCell cell = newRow.createCell(colNum);
-		cell.setCellValue(result);
 	}
 }
