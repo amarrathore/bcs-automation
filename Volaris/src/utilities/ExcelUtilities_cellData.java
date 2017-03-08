@@ -21,8 +21,7 @@ public class ExcelUtilities_cellData {
 	public static XSSFSheet excelWorkSheet;
 	public static XSSFRow row;
 	public static XSSFCell cell;
-	
-	
+		
     public static Object[][] excel(String sheetName, String location) throws IOException{  
     	
     excel = new File(location);
@@ -33,7 +32,6 @@ public class ExcelUtilities_cellData {
     int rowNum = excelWorkSheet.getLastRowNum() + 1;
     int colNum = excelWorkSheet.getRow(0).getLastCellNum();
     String[][] data = new String[rowNum][colNum];
-
     for (int i = 0 ; i < rowNum ; i++) {
     	row = excelWorkSheet.getRow(i);
             for (int j = 0 ; j < colNum ; j++) {
