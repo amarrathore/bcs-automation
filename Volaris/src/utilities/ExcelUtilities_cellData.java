@@ -13,7 +13,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  * @author BCS Technology
  */
-
 public class ExcelUtilities_cellData {
 	public static File excel;
 	public static FileInputStream excelFile;
