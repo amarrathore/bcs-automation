@@ -3,8 +3,6 @@ package utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Date;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -23,12 +21,12 @@ public class ExcelUtilities_cellData {
 	public static XSSFSheet excelWorkSheet;
 	public static XSSFRow row;
 	public static XSSFCell cell;
-		
-    public static Object[][] setExcelFile(String sheetName, String location) throws IOException {  
+
+    public static Object[][] setExcelFile(String location, int sheetName) throws IOException {
     	excel = new File(location);
     	excelFile = new FileInputStream(excel);
     	excelWorkBook = new XSSFWorkbook(excelFile);
-    	excelWorkSheet = excelWorkBook.getSheet(sheetName);
+    	excelWorkSheet = excelWorkBook.getSheetAt(sheetName);
     	int rowNum = excelWorkSheet.getLastRowNum() + 1;
     	int colNum = excelWorkSheet.getRow(0).getLastCellNum();
     	String[][] data = new String[rowNum][colNum];
@@ -38,25 +36,23 @@ public class ExcelUtilities_cellData {
             	cell = row.getCell(colCount);
                 String value = cellToString(cell);
                 data[rowCount][colCount] = value;
-                System.out.println("The value is " + value);
+                System.out.println("The values are: " + value);
             }
         }
     	return data;
     }
-
-	public static String cellToString(XSSFCell cell){  
-	    int type;
-	    Object result;
-	    type = cell.getCellType();
-	
-	    switch (type) {
-	        case Cell.CELL_TYPE_NUMERIC: 
+	public static String cellToString(XSSFCell cell){
+		int type;
+		Object result;
+		type = cell.getCellType();
+		switch (type) {
+			case Cell.CELL_TYPE_NUMERIC:
 	        	//Numeric/Date Value in Excel File
 	        	if (DateUtil.isCellDateFormatted(cell)) {
-	                Date date = (Date) cell.getDateCellValue();
+	                java.util.Date date = cell.getDateCellValue();
 	                System.out.println(date);
 	            } else {
-  
+	            	
 	            }
 	        	result = cell.getNumericCellValue();
 	            break;
@@ -67,12 +63,15 @@ public class ExcelUtilities_cellData {
 	        case Cell.CELL_TYPE_BOOLEAN:
 	        	//Boolean Value in Excel File 
 	        	result = cell.getBooleanCellValue();
-	        	break;
-	        	
-	        default:  
-	        	throw new RuntimeException("There is no support for this type of cell");                        
+	        	break;   	
+	        default:
+	        	throw new RuntimeException("There is no support for this type of cell");                      
 	    }
 	    return result.toString();
 	}
+	public static void main(String[] args) throws Exception {
+		ExcelUtilities_cellData.setExcelFile("./inputFiles/testData.xlsx", 0);
+	}
+	
 }
 

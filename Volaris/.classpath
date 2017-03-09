@@ -16,13 +16,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/selenium-server-standalone-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-examples-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-excelant-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-ooxml-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-ooxml-schemas-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/poi-bin-3.16-beta2-20170202/poi-3.16-beta2/poi-scratchpad-3.16-beta2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/amarnath.rathore/Desktop/Automation/log4j-1.2.15.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

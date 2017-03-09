@@ -18,12 +18,12 @@ public class ExcelUtility {
 	public static XSSFRow row;
 	public static XSSFCell cell;
 	
-	public static void setExcelFile(String path, String sheetName) throws Exception {
+	public static void setExcelFile(String path, int sheetName) throws Exception {
 			//Open the Excel file
 			FileInputStream excelFile = new FileInputStream(path);
 			//Access the required test data sheet
 			excelWorkBook = new XSSFWorkbook(excelFile);
-			excelWorkSheet = excelWorkBook.getSheet(sheetName);
+			excelWorkSheet = excelWorkBook.getSheetAt(sheetName);
 	}
 	public static XSSFRow getRow(int rowNum) {
 		return excelWorkSheet.createRow(rowNum);
