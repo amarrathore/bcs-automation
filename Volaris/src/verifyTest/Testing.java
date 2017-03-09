@@ -25,6 +25,5 @@ public class Testing {
 		driver.get("https://www.volaris.com/?culture=en-US&Flag=us");
 		driver.manage().window().maximize();
 		driver.quit();
-	
 	}
 }
