@@ -19,7 +19,7 @@ public class ScreenShot{
 		String timeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
 		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); 
 		try{			
-			//Save file into specified location.			 
+			//The below method will save the screenshot in the drive with test method name			 
 			FileUtils.copyFile(sourceFile, new File(location+timeStamp));
 			System.out.println("Screenshot captured successfully");
 		}
