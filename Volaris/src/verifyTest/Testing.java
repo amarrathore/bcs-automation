@@ -24,6 +24,7 @@ public class Testing {
 		logInfo.warn("warn");
 		logInfo.error("error");
 		logInfo.fatal("fatal");*/
+		
 		driver.get("https://www.volaris.com/?culture=en-US&Flag=us");
 		driver.manage().window().maximize();
 		
