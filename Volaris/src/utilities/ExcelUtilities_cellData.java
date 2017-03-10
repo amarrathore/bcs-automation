@@ -68,9 +68,7 @@ public class ExcelUtilities_cellData {
 	    }
 	    return result.toString();
 	}
-	public static void main(String[] args) throws Exception {
-		ExcelUtilities_cellData.setExcelFile("./inputFiles/testData.xlsx", 0);
-	}
+	
 	
 }
 
