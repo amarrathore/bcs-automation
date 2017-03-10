@@ -68,7 +68,5 @@ public class ExcelUtilities_cellData {
 	    }
 	    return result.toString();
 	}
-	
-	
 }
 
