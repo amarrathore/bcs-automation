@@ -27,7 +27,7 @@ public class Testing {
 		driver.get("https://www.volaris.com/?culture=en-US&Flag=us");
 		driver.manage().window().maximize();
 		
-		Screenshot_ITest.takeScreenShot(driver, "./Screenshots/");
+		
 		driver.quit();
 	}
 }
