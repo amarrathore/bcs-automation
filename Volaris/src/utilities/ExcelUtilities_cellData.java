@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  * @author BCS Technology
  */
+
 public class ExcelUtilities_cellData {
 	public static File excel;
 	public static FileInputStream excelFile;
@@ -21,11 +22,11 @@ public class ExcelUtilities_cellData {
 	public static XSSFRow row;
 	public static XSSFCell cell;
 
-    public static Object[][] setExcelFile(String location, int sheetName) throws IOException {
-    	excel = new File(location);
+    public static Object[][] setExcelFile(String fileLocation, int sheetNumber) throws IOException {
+    	excel = new File(fileLocation);
     	excelFile = new FileInputStream(excel);
     	excelWorkBook = new XSSFWorkbook(excelFile);
-    	excelWorkSheet = excelWorkBook.getSheetAt(sheetName);
+    	excelWorkSheet = excelWorkBook.getSheetAt(sheetNumber);
     	int rowNum = excelWorkSheet.getLastRowNum() + 1;
     	int colNum = excelWorkSheet.getRow(0).getLastCellNum();
     	String[][] data = new String[rowNum][colNum];
@@ -34,12 +35,12 @@ public class ExcelUtilities_cellData {
             for (int colCount = 0; colCount < colNum; colCount++) {
             	cell = row.getCell(colCount);
                 String value = cellToString(cell);
-                data[rowCount][colCount] = value;
-                System.out.println("The values are: " + value);
+                data[rowCount][colCount] = value;              
             }
         }
     	return data;
     }
+    
 	public static String cellToString(XSSFCell cell){
 		int type;
 		Object result;
@@ -56,17 +57,27 @@ public class ExcelUtilities_cellData {
 	        	result = cell.getNumericCellValue();
 	            break;
 	        case Cell.CELL_TYPE_STRING:
-	        	//String Value in Excel File
-	            result = cell.getStringCellValue();
-	            break;
+	        	//String Value in Excel File	            
 	        case Cell.CELL_TYPE_BOOLEAN:
-	        	//Boolean Value in Excel File 
-	        	result = cell.getBooleanCellValue();
-	        	break;   	
+	        	//Boolean Value in Excel File	        	
 	        default:
-	        	throw new RuntimeException("There is no support for this type of cell");                      
+	        	throw new RuntimeException("There is no support for this type of cell");                    
 	    }
 	    return result.toString();
 	}
-}
-
+	
+	public static String getExcelStringData() {
+		String getExcelStringData = cell.getStringCellValue();
+		return getExcelStringData;
+	}
+	
+	public static double getExcelNumericData() {
+		double getExcelNumericData = cell.getNumericCellValue();
+		return getExcelNumericData;
+	}
+	
+	public static boolean getExcelBooleanData() {
+		boolean getExcelBooleanData = cell.getBooleanCellValue();
+		return getExcelBooleanData;
+	}
+} 

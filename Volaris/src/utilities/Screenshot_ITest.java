@@ -14,13 +14,7 @@ import org.testng.ITestResult;
 
 public class Screenshot_ITest implements ITestListener {
 	WebDriver driver;
-	public void onTestFailure(ITestResult result) {
-    	System.out.println("***** Error "+result.getName()+" test has failed *****");
-    	String methodName=result.getName().toString();
-    	takeScreenShot(driver, "location", methodName);
-    }
-    
-    public void takeScreenShot(WebDriver driver, String location, String methodName) {
+	public void takeScreenShot(WebDriver driver, String location, String methodName) {
     	String timeStamp=new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date())+".jpg";
     	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
          //This method will save the screenshot with test method name 
@@ -31,10 +25,22 @@ public class Screenshot_ITest implements ITestListener {
 				e.printStackTrace();
 			}
     }
+	@Override
+	public void onTestStart(ITestResult result) { }
+	@Override
+	public void onTestSuccess(ITestResult result) { }
+	@Override
+	public void onTestFailure(ITestResult result) {
+    	System.out.println("Error "+result.getName()+" test has failed.");
+    	String methodName=result.getName().toString();
+    	takeScreenShot(driver, "./Sreenshots/", methodName);
+	}
+	@Override
+	public void onTestSkipped(ITestResult result) { }
+	@Override
+	public void onTestFailedButWithinSuccessPercentage(ITestResult result) { }
+	@Override
+	public void onStart(ITestContext context) { }
+	@Override
 	public void onFinish(ITestContext context) { }
-	public void onTestStart(ITestResult result) { }  
-    public void onTestSuccess(ITestResult result) { }
-    public void onTestSkipped(ITestResult result) { }
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) { }
-    public void onStart(ITestContext context) { }
 }  
