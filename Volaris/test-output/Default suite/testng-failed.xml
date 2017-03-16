@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="utilities.Screenshot_ITest">
+      <class name="verifyTest.ScreenTest">
         <methods>
-          <include name="onTestFailure"/>
+          <include name="testToFail"/>
         </methods>
-      </class> <!-- utilities.Screenshot_ITest -->
+      </class> <!-- verifyTest.ScreenTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
