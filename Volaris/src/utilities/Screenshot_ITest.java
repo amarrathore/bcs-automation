@@ -8,7 +8,6 @@ public class Screenshot_ITest implements ITestListener {
 	
 	public void onTestFailure(ITestResult result) {
 		String location = "C:\\Users\\amarnath.rathore\\Desktop\\Automation\\git\\bcs-automation\\Volaris\\screenshots\\";
-    	System.out.println("Error " + result.getName() + " test has failed.");
     	String methodName = result.getName().toString().trim();
     	ScreenShotFunction.takeScreenShot(location, methodName);
     }    
