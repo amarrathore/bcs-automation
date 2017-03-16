@@ -13,6 +13,7 @@ public class ConfigFileReader {
 	public static File file;
 	public static FileInputStream inputStream;
 	public static Properties pro;
+	
 	@Test
 	// This method will return value from config properties file.
 	public static void readConfigFile() {
