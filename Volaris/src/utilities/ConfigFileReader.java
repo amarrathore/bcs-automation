@@ -24,6 +24,5 @@ public class ConfigFileReader {
 			System.out.println(e.getMessage());
 		}
 		return locators.getProperty(locatorName);		
-	}
-	
+	}	
 }
