@@ -3,13 +3,11 @@ package utilities;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
-
 /**
  * @author BCS Technology
  * 
@@ -37,6 +35,7 @@ public class ExcelUtilities {
 			}
 			System.out.println();
         }
+		excelFile.close();
 	}
     
     public static Object cellToString(Cell cell) {
@@ -44,7 +43,7 @@ public class ExcelUtilities {
     	case Cell.CELL_TYPE_NUMERIC:
     		//Numeric/Date Value in Excel File
 				if (DateUtil.isCellDateFormatted(cell)) {
-	                return getDateCellValue(cell);
+	                return getExcelDateValue(cell);
 	            } else {
 	            	return getExcelNumericData(cell);
 	            }			
@@ -64,7 +63,7 @@ public class ExcelUtilities {
 		return getExcelNumericData;
 	}
 	
-	private static Date getDateCellValue(Cell cell) {
+	private static Date getExcelDateValue(Cell cell) {
 		Date getExcelDateData = cell.getDateCellValue();
 		return getExcelDateData;
 	}
@@ -77,5 +76,11 @@ public class ExcelUtilities {
 	public static boolean getExcelBooleanData(Cell cell) {
 		boolean getExcelBooleanData = cell.getBooleanCellValue();
 		return getExcelBooleanData;
-	}	
+	}
+	
+	public static void main(String[] args) throws IOException {
+		String fileLocation = ConfigFileReader.getLocator("excelFileLocation");
+		System.out.println("The excel Path is " + fileLocation);
+		ExcelUtilities.setExcelFile(fileLocation, 1);
+	}
 } 

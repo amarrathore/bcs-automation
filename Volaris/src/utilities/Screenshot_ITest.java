@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 public class Screenshot_ITest implements ITestListener {
 	
 	public void onTestFailure(ITestResult result) {
-		String location = "C:\\Users\\amarnath.rathore\\Desktop\\Automation\\git\\bcs-automation\\Volaris\\screenshots\\";
+		String location = ConfigFileReader.getLocator("screenshotLocation");
     	String methodName = result.getName().toString().trim();
     	ScreenShotFunction.takeScreenShot(location, methodName);
     }    

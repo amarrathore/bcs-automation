@@ -10,56 +10,56 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * 
  */
 public class Wait {
-	public static void explicitWaitId(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitId(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id(inspectElementId)));
 	}
 	
-	public static void explicitWaitClassName(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitClassName(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.className(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.className(inspectElementId)));
 	}
 	
-	public static void explicitWaitName(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitName(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.name(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.name(inspectElementId)));
 	}
 	
-	public static void explicitWaitLinkText(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitLinkText(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.linkText(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.linkText(inspectElementId)));
 	}
 	
-	public static void explicitWaitTagName(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitTagName(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.tagName(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.tagName(inspectElementId)));
 	}
 	
-	public static void explicitWaitPartialLinkText(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitPartialLinkText(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(inspectElementId)));
 	}
 	
-	public static void explicitWaitCssSelector(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitCssSelector(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(inspectElementId)));
 	}
 	
-	public static void explicitWaitXpath(WebDriver driver, String locatorId) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+	public static void explicitWaitXpath(WebDriver driver, String inspectElementId) {
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeUnit);
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath(locatorId)));
+		explicitWait.until(ExpectedConditions.elementToBeClickable(By.xpath(inspectElementId)));
 	}
 	
 	public static void implicitWait(WebDriver driver) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.pro.getProperty("waitTimeUnit"));
+		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
 		driver.manage().timeouts().implicitlyWait(timeUnit, TimeUnit.SECONDS);
 	}
 }

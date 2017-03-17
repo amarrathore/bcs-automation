@@ -5,7 +5,7 @@
     <classes>
       <class name="verifyTest.ScreenTest">
         <methods>
-          <include name="testToFail"/>
+          <include name="TesttoFail"/>
         </methods>
       </class> <!-- verifyTest.ScreenTest -->
     </classes>
