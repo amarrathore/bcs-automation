@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="verifyTest.ScreenTest">
+      <class name="utilities.GenericBrowsers">
         <methods>
-          <include name="TesttoFail"/>
+          <include name="StartBrowser"/>
         </methods>
-      </class> <!-- verifyTest.ScreenTest -->
+      </class> <!-- utilities.GenericBrowsers -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

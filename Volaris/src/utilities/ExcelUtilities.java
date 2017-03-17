@@ -77,10 +77,4 @@ public class ExcelUtilities {
 		boolean getExcelBooleanData = cell.getBooleanCellValue();
 		return getExcelBooleanData;
 	}
-	
-	public static void main(String[] args) throws IOException {
-		String fileLocation = ConfigFileReader.getLocator("excelFileLocation");
-		System.out.println("The excel Path is " + fileLocation);
-		ExcelUtilities.setExcelFile(fileLocation, 1);
-	}
 } 
