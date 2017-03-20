@@ -1,17 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="1" failed="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="14420" started-at="2017-03-17T09:30:30Z" finished-at="2017-03-17T09:30:44Z">
+  <suite name="Default suite" duration-ms="97" started-at="2017-03-20T06:26:08Z" finished-at="2017-03-20T06:26:08Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="14420" started-at="2017-03-17T09:30:30Z" finished-at="2017-03-17T09:30:44Z">
-      <class name="utilities.GenericBrowsers">
-        <test-method status="PASS" signature="StartBrowser()[pri:0, instance:utilities.GenericBrowsers@3bfdc050]" name="StartBrowser" duration-ms="14395" started-at="2017-03-17T15:00:30Z" finished-at="2017-03-17T15:00:44Z">
+    <test name="Default test" duration-ms="97" started-at="2017-03-20T06:26:08Z" finished-at="2017-03-20T06:26:08Z">
+      <class name="utilities.CrossBrowsers">
+        <test-method status="FAIL" signature="StartBrowser(java.lang.String)[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="StartBrowser" is-config="true" duration-ms="0" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
+          <exception class="org.testng.TestNGException">
+            <message>
+              <![CDATA[
+Parameter 'browser' is required by @Configuration on method StartBrowser but has not been marked @Optional or defined
+in C:\Users\amarnath.rathore\AppData\Local\Temp\testng-eclipse--2104672272\testng-customsuite.xml]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.testng.TestNGException: 
+Parameter 'browser' is required by @Configuration on method StartBrowser but has not been marked @Optional or defined
+in C:\Users\amarnath.rathore\AppData\Local\Temp\testng-eclipse--2104672272\testng-customsuite.xml
+	at org.testng.internal.Parameters.createParameters(Parameters.java:154)
+	at org.testng.internal.Parameters.createParameters(Parameters.java:361)
+	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:84)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:197)
+	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:648)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.testng.TestNGException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StartBrowser -->
-      </class> <!-- utilities.GenericBrowsers -->
+        <test-method status="SKIP" signature="Test()[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="Test" duration-ms="29" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Test -->
+        <test-method status="SKIP" signature="closeBrowser()[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="closeBrowser" is-config="true" duration-ms="0" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- utilities.CrossBrowsers -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
