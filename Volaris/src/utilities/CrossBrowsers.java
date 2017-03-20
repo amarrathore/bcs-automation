@@ -16,37 +16,27 @@ import org.testng.annotations.Test;
 public class CrossBrowsers {
 	static WebDriver driver;
 	@Test
-	// Passing browser parameter from TestNG xml.	
 	@Parameters("browser")
-	public static void StartBrowser(String browser) throws Exception {	
-			try {
-				// If the browser is Firefox, then do this
-				if(browser.equalsIgnoreCase("firefox")) {
-					System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
-					driver = new FirefoxDriver();					
-				}
-				// If browser is googleChrome, then do this
-				else if (browser.equalsIgnoreCase("googleChrome")) {
-					System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
-					driver = new ChromeDriver();
-					driver.manage().window().maximize();
-				}
-				// If browser is IE, then do this
-				else if (browser.equalsIgnoreCase("IE")) {
-					System.setProperty("webdriver.ie.driver", "./Driver/IEDriverServer.exe");
-					driver = new InternetExplorerDriver();
-				}
-				else{
-				// If no browser passed throw exception
-					throw new Exception("Browser is not correct");
-				}
-				driver.get(ConfigFileReader.getLocator("URL"));
-			} catch (WebDriverException e) {
-				e.printStackTrace();
-			}
-			driver .get(ConfigFileReader.getLocator("URL"));
+	public static void StartBrowser(String browser) throws Exception {
+		try {	
+			if(browser.equalsIgnoreCase("firefox")) {
+				System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+				driver = new FirefoxDriver();					
+			} else if (browser.equalsIgnoreCase("Chrome")) {
+				System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+				driver = new ChromeDriver();
+				driver.manage().window().maximize();
+			} else if (browser.equalsIgnoreCase("IE")) {
+				System.setProperty("webdriver.ie.driver", "./Driver/IEDriverServer.exe");
+				driver = new InternetExplorerDriver();
+			} else {
+				throw new Exception("Browser is not correct");
+			}	
+		} catch (WebDriverException e) {
+			e.printStackTrace();
+		}
+		driver.get(ConfigFileReader.getLocator("URL"));
 	}
-
 	
 	@AfterTest
 	public void closeBrowser() {
