@@ -19,7 +19,7 @@ public class SeleniumUtilities {
 	public static FileInputStream inputStream;
 	public static XSSFWorkbook excelWorkBook;
 	public static XSSFSheet excelWorkSheet;
-	public static Properties locators;
+	public static Properties property;
 	
 	public static File getFile(String fileLocation) {
 		try {
@@ -29,14 +29,25 @@ public class SeleniumUtilities {
 		}
 		return file;
 	}
-	public static FileInputStream getInputSteam(File file) {
+	
+	public static FileInputStream getInputSteam() {
 		try {
 			inputStream = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		return inputStream;
-	}	
+	}
+	
+	public static int getRowCount() {
+		int rowCount = excelWorkSheet.getLastRowNum()-1;
+		return rowCount;
+	}
+	
+	public static int getColCount() {
+		int colCount = excelWorkSheet.getRow(getRowCount()).getLastCellNum();
+		return colCount;
+	}
     
     public static Object cellToString(Cell cell) {
     	switch (cell.getCellType()) {
@@ -55,31 +66,21 @@ public class SeleniumUtilities {
 	    }
 	}    
     
-	public static String getLocator(String locatorName) {		
+	public static String getProperties(String locatorName) {		
 		try {
-			SeleniumUtilities.getFile(System.getProperty("user.dir") + "./config.properties");
-			SeleniumUtilities.getInputSteam(file);
-			locators = new Properties();
-			locators.load(inputStream);		
+			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
+			SeleniumUtilities.getInputSteam();
+			property = new Properties();
+			property.load(inputStream);		
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return locators.getProperty(locatorName);
-	}
-	
-	public static int getRowCount() {
-		int rowCount = excelWorkSheet.getLastRowNum();
-		return rowCount;		
-	}
-	
-	public static int getColCount() {
-		return 0;
-			
+		return property.getProperty(locatorName);
 	}
     
     public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
 		SeleniumUtilities.getFile(fileLocation);
-		SeleniumUtilities.getInputSteam(file);
+		SeleniumUtilities.getInputSteam();
 		excelWorkBook = new XSSFWorkbook(inputStream);
 		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
 		Iterator<Row> iterator = excelWorkSheet.iterator();
@@ -117,7 +118,7 @@ public class SeleniumUtilities {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		//SeleniumUtilities.setExcelFile(ConfigFileReader.getLocator("excelFileLocation"), 0);
-		System.out.println(SeleniumUtilities.getLocator("URL"));
+		SeleniumUtilities.setExcelFile(SeleniumUtilities.getProperties("excelFileLocation"), 0);
+		System.out.println(SeleniumUtilities.getProperties("URL"));
 	}
 } 

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel test suite" thread-count="1" parallel="tests" >
+<suite name="Parallel test suite" parallel="tests" >
   <test name="firefoxTest">
   <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="utilities.CrossBrowsers"/>
+      <class name="verifyTest.ScreenTest"/>
     </classes>
   </test>
   <test name="chromeTest">
-  <parameter name="browser" value="googleChrome"/>
+  <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="utilities.CrossBrowsers"/>
+      <class name="verifyTest.ScreenTest"/>
     </classes>
   </test>
   <test name="IETest">
   <parameter name="browser" value="IE"/>
     <classes>
-      <class name="utilities.CrossBrowsers"/>
+      <class name="verifyTest.ScreenTest"/>
     </classes>
   </test>
 </suite>

@@ -1,57 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="1" failed="0" total="1" passed="0">
+<testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="97" started-at="2017-03-20T06:26:08Z" finished-at="2017-03-20T06:26:08Z">
+  <suite name="Parallel test suite" duration-ms="27013" started-at="2017-03-21T06:28:35Z" finished-at="2017-03-21T06:29:02Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="97" started-at="2017-03-20T06:26:08Z" finished-at="2017-03-20T06:26:08Z">
-      <class name="utilities.CrossBrowsers">
-        <test-method status="FAIL" signature="StartBrowser(java.lang.String)[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="StartBrowser" is-config="true" duration-ms="0" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
-          <exception class="org.testng.TestNGException">
-            <message>
-              <![CDATA[
-Parameter 'browser' is required by @Configuration on method StartBrowser but has not been marked @Optional or defined
-in C:\Users\amarnath.rathore\AppData\Local\Temp\testng-eclipse--2104672272\testng-customsuite.xml]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.testng.TestNGException: 
-Parameter 'browser' is required by @Configuration on method StartBrowser but has not been marked @Optional or defined
-in C:\Users\amarnath.rathore\AppData\Local\Temp\testng-eclipse--2104672272\testng-customsuite.xml
-	at org.testng.internal.Parameters.createParameters(Parameters.java:154)
-	at org.testng.internal.Parameters.createParameters(Parameters.java:361)
-	at org.testng.internal.Parameters.createConfigurationParameters(Parameters.java:84)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:197)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:138)
-	at org.testng.TestRunner.beforeRun(TestRunner.java:648)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
-	at org.testng.TestNG.run(TestNG.java:1024)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:230)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:76)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.testng.TestNGException -->
+    <test name="IETest" duration-ms="9037" started-at="2017-03-21T06:28:35Z" finished-at="2017-03-21T06:28:44Z">
+      <class name="verifyTest.ScreenTest">
+        <test-method status="PASS" signature="TesttoFail(java.lang.String)[pri:0, instance:verifyTest.ScreenTest@42dafa95]" name="TesttoFail" duration-ms="8989" started-at="2017-03-21T11:58:35Z" finished-at="2017-03-21T11:58:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[IE]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- StartBrowser -->
-        <test-method status="SKIP" signature="Test()[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="Test" duration-ms="29" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
+        </test-method> <!-- TesttoFail -->
+      </class> <!-- verifyTest.ScreenTest -->
+    </test> <!-- IETest -->
+    <test name="chromeTest" duration-ms="22294" started-at="2017-03-21T06:28:35Z" finished-at="2017-03-21T06:28:57Z">
+      <class name="verifyTest.ScreenTest">
+        <test-method status="PASS" signature="TesttoFail(java.lang.String)[pri:0, instance:verifyTest.ScreenTest@3c0ecd4b]" name="TesttoFail" duration-ms="22219" started-at="2017-03-21T11:58:35Z" finished-at="2017-03-21T11:58:57Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Test -->
-        <test-method status="SKIP" signature="closeBrowser()[pri:0, instance:utilities.CrossBrowsers@1794d431]" name="closeBrowser" is-config="true" duration-ms="0" started-at="2017-03-20T11:56:08Z" finished-at="2017-03-20T11:56:08Z">
+        </test-method> <!-- TesttoFail -->
+      </class> <!-- verifyTest.ScreenTest -->
+    </test> <!-- chromeTest -->
+    <test name="firefoxTest" duration-ms="27013" started-at="2017-03-21T06:28:35Z" finished-at="2017-03-21T06:29:02Z">
+      <class name="verifyTest.ScreenTest">
+        <test-method status="PASS" signature="TesttoFail(java.lang.String)[pri:0, instance:verifyTest.ScreenTest@66a3ffec]" name="TesttoFail" duration-ms="26878" started-at="2017-03-21T11:58:35Z" finished-at="2017-03-21T11:59:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeBrowser -->
-      </class> <!-- utilities.CrossBrowsers -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+        </test-method> <!-- TesttoFail -->
+      </class> <!-- verifyTest.ScreenTest -->
+    </test> <!-- firefoxTest -->
+  </suite> <!-- Parallel test suite -->
 </testng-results>
