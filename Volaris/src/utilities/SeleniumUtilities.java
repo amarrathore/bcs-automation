@@ -1,12 +1,20 @@
 package utilities;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
@@ -20,6 +28,10 @@ public class SeleniumUtilities {
 	public static XSSFWorkbook excelWorkBook;
 	public static XSSFSheet excelWorkSheet;
 	public static Properties property;
+	public static XSSFRow row;
+	public static XSSFCell cell;
+	public static FileOutputStream outputStream;
+	public static WebDriver driver;
 	
 	public static File getFile(String fileLocation) {
 		try {
@@ -49,7 +61,7 @@ public class SeleniumUtilities {
 		return colCount;
 	}
     
-    public static Object cellToString(Cell cell) {
+    public static Object cellToType(Cell cell) {
     	switch (cell.getCellType()) {
     	case Cell.CELL_TYPE_NUMERIC:
 			if (DateUtil.isCellDateFormatted(cell)) {
@@ -64,18 +76,6 @@ public class SeleniumUtilities {
 	        default:
 	        return null;
 	    }
-	}    
-    
-	public static String getProperties(String locatorName) {		
-		try {
-			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
-			SeleniumUtilities.getInputSteam();
-			property = new Properties();
-			property.load(inputStream);		
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return property.getProperty(locatorName);
 	}
     
     public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
@@ -89,13 +89,46 @@ public class SeleniumUtilities {
 			Iterator<Cell> cellIterator = currentRow.iterator();
 			while (cellIterator.hasNext()) {
 				Cell cell = cellIterator.next();
-				Object value = cellToString(cell);
+				Object value = cellToType(cell);
 				System.out.print("\t" + value);
 			}
 			System.out.println();
         }
 		inputStream.close();
 	}
+    
+    
+    
+    
+    public static void setCellData(String result, XSSFRow row, int colNum, String fileTestData) throws Exception {
+
+		cell = row.createCell(colNum);
+		cell.setCellValue(result);
+		SeleniumUtilities.writeData(fileTestData);
+	}
+    
+    public static void writeData(String fileTestData) throws Exception {
+    	outputStream = new FileOutputStream(fileTestData);
+    	excelWorkBook.write(outputStream);
+		outputStream.flush();
+		outputStream.close();
+	}
+    
+    
+    
+    
+    
+	public static String getProperties(String locatorName) {		
+		try {
+			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
+			SeleniumUtilities.getInputSteam();
+			property = new Properties();
+			property.load(inputStream);		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return property.getProperty(locatorName);
+	}    
 	
 	public static double getExcelNumericData(Cell cell) {
 		double getExcelNumericData = cell.getNumericCellValue();
@@ -115,10 +148,7 @@ public class SeleniumUtilities {
 	public static boolean getExcelBooleanData(Cell cell) {
 		boolean getExcelBooleanData = cell.getBooleanCellValue();
 		return getExcelBooleanData;
-	}
+	}	
 	
-	public static void main(String[] args) throws IOException {
-		SeleniumUtilities.setExcelFile(SeleniumUtilities.getProperties("excelFileLocation"), 0);
-		System.out.println(SeleniumUtilities.getProperties("URL"));
-	}
+	
 } 

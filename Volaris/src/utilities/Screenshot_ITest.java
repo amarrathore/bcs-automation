@@ -1,11 +1,21 @@
 package utilities;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class Screenshot_ITest implements ITestListener {
-
+	WebDriver driver;
+	
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub		
@@ -19,10 +29,16 @@ public class Screenshot_ITest implements ITestListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
-		String location = ConfigFileReader.getLocator("screenshotLocation");
+		String location = SeleniumUtilities.getProperties("screenshotLocation");
     	String methodName = result.getName().toString().trim();
-    	ScreenShotFunction.takeScreenShot(location, methodName);
-		
+    	String timeStamp = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date()) + "_";
+    	
+		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		 	try {
+		 		FileUtils.copyFile(sourceFile, new File(location + timeStamp + methodName + ".png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}	
 	}
 
 	@Override

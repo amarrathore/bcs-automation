@@ -63,5 +63,5 @@ public class SelectBrowser {
 		}
 		driver.get(SeleniumUtilities.getProperties("URL"));
 		return driver;
-	}	
+	}
 }
