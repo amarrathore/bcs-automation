@@ -9,7 +9,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 @Listeners(utilities.ScreenshotITest.class)
 
-public class ScreenTest extends WebDriverFactory{
+public class ScreenTest extends WebDriverFactory {
 	
 	@Parameters({"browser"})
 	@Test
@@ -23,8 +23,7 @@ public class ScreenTest extends WebDriverFactory{
 	public void afterTest() {
 		driver.close();
 		try{
-			driver.quit();
-		
+			driver.quit();		
 		/*Runtime.getRuntime().exec("taskkill /F /IM 	chromeDriver.exe");
 		Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");*/
 		/*Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
@@ -33,6 +32,6 @@ public class ScreenTest extends WebDriverFactory{
 		Runtime.getRuntime().exec("taskkill /F /IM WerFault.exe");*/
 		} catch (Exception e) {
 			e.printStackTrace();
-			}	
+			}
 	}	
 }

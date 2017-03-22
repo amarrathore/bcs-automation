@@ -26,8 +26,7 @@ public class Testing extends WebDriverFactory {
 		logInfo.info("info");
 		logInfo.warn("warn");
 		logInfo.error("error");
-		logInfo.fatal("fatal");*/
-		
+		logInfo.fatal("fatal");*/		
 		try {			
 			driver = BrowserUtilities.getBrowser(SeleniumUtilities.getProperties("browser"));
 			driver.get(SeleniumUtilities.getProperties("URL"));			

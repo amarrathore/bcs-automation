@@ -3,6 +3,7 @@ package utilities;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -52,10 +53,34 @@ public class SeleniumUtilities {
 		return inputStream;
 	}
 	
-	public static int getRowCount() {
-		int rowCount = excelWorkSheet.getLastRowNum()-1;
-		return rowCount;
+	public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
+		SeleniumUtilities.getFile(fileLocation);
+		SeleniumUtilities.getInputSteam();
+		excelWorkBook = new XSSFWorkbook(inputStream);
+		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
 	}
+	
+	public static XSSFRow getRow(int rowNum) {
+		return excelWorkSheet.createRow(rowNum);
+	}
+	
+	public static String getCellData(int rowNum, int colNum) throws Exception {
+		Iterator<Row> iterator = excelWorkSheet.iterator();
+		while (iterator.hasNext()) {
+			Row currentRow = iterator.next();
+			Iterator<Cell> cellIterator = currentRow.iterator();
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				Object value = cellToType(cell);
+				System.out.print("\t" + value);
+			}
+			System.out.println();
+        }
+		inputStream.close();
+		return null;
+	}
+	
+	
 	
 	public static int getColCount() {
 		int colCount = excelWorkSheet.getRow(getRowCount()).getLastCellNum();
@@ -79,24 +104,51 @@ public class SeleniumUtilities {
 	    }
 	}
     
-    public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
-		SeleniumUtilities.getFile(fileLocation);
-		SeleniumUtilities.getInputSteam();
-		excelWorkBook = new XSSFWorkbook(inputStream);
-		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
-		Iterator<Row> iterator = excelWorkSheet.iterator();
-		while (iterator.hasNext()) {
-			Row currentRow = iterator.next();
-			Iterator<Cell> cellIterator = currentRow.iterator();
-			while (cellIterator.hasNext()) {
-				Cell cell = cellIterator.next();
-				Object value = cellToType(cell);
-				System.out.print("\t" + value);
-			}
-			System.out.println();
-        }
-		inputStream.close();
-	}
+    
+//=======================================================   
+    
+    
+    public static void setExcelSheet() {
+    	
+    }
+    
+    public static void setCellData(String result, XSSFRow newRow, int colNum, String fileTestData) throws Exception {
+    	XSSFCell cell = newRow.createCell(colNum);
+    	cell.setCellValue(result);
+    	SeleniumUtilities.writeData(fileTestData);
+    }
+    
+    public static void writeData(String newFileTestData) throws Exception {
+    	outputStream = new FileOutputStream(newFileTestData);
+    	excelWorkBook.write(outputStream);
+    	outputStream.flush();
+    	outputStream.close();
+    }
+
+    public static void setStaticCellData(String result, int rowNum, int colNum, String newFileTestData) throws Exception {
+    	try {
+    		row = excelWorkSheet.getRow(rowNum);
+    		cell = row.getCell(colNum, Row.RETURN_BLANK_AS_NULL);
+    		if (cell == null) {
+    			cell = row.createCell(colNum);
+    			cell.setCellValue(result);
+    			} else {
+    				cell.setCellValue(result);
+    				}
+    		outputStream = new FileOutputStream(newFileTestData);
+    		excelWorkBook.write(outputStream);
+    		XSSFFormulaEvaluator.evaluateAllFormulaCells(excelWorkBook);
+    		outputStream.flush();
+    		outputStream.close();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    			}
+    }
+    
+    
+    
+    
+//====================================================================    
     
 	public static String getProperties(String locatorName) {		
 		try {
