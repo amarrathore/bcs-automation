@@ -33,7 +33,6 @@ public class SeleniumUtilities {
 	public static XSSFRow row;
 	public static XSSFCell cell;
 	public static FileOutputStream outputStream;
-	//public static WebDriver driver;
 	
 	public static File getFile(String fileLocation) {
 		try {

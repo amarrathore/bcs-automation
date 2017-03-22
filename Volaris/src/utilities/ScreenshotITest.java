@@ -7,7 +7,6 @@ import org.testng.ITestResult;
 
 public class ScreenshotITest extends WebDriverFactory implements ITestListener {
 	
-	
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub		
@@ -50,6 +49,5 @@ public class ScreenshotITest extends WebDriverFactory implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		// TODO Auto-generated method stub		
-	}	
-		
+	}		
 } 

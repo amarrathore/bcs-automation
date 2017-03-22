@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Testing extends WebDriverFactory {	
 
 	@Test
-	public void testToFail() {
+	public void testScreenshot() {
 		/*PropertyConfigurator.configure(this.getClass().getClassLoader().getResource("log4j.properties"));
 		//PropertyConfigurator.configure("log4j.properties");
 		final Logger logInfo=Logger.getLogger(Testing.class);
@@ -29,7 +29,7 @@ public class Testing extends WebDriverFactory {
 		logInfo.fatal("fatal");*/
 		
 		try {			
-			driver = BrowserUtilities.getBrowser();
+			driver = BrowserUtilities.getBrowser(SeleniumUtilities.getProperties("browser"));
 			driver.get(SeleniumUtilities.getProperties("URL"));			
 			System.out.println("This method is working fine");
 			Assert.assertTrue(false);

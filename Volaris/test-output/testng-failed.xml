@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Parallel test suite]" parallel="tests">
+  <parameter name="browser" value="IE"/>
+  <test name="chromeTest(failed)" parallel="tests">
+    <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="verifyTest.Testing">
+      <class name="verifyTest.ScreenTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="testToFail"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+          <include name="afterTest"/>
+          <include name="TesttoFail" invocation-numbers="0"/>
         </methods>
-      </class> <!-- verifyTest.Testing -->
+      </class> <!-- verifyTest.ScreenTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- chromeTest(failed) -->
+</suite> <!-- Failed suite [Parallel test suite] -->
