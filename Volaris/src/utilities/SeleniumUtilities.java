@@ -50,6 +50,25 @@ public class SeleniumUtilities {
 			e.printStackTrace();
 		}
 		return inputStream;
+	}	
+
+    public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
+		SeleniumUtilities.getFile(fileLocation);
+		SeleniumUtilities.getInputSteam();
+		excelWorkBook = new XSSFWorkbook(inputStream);
+		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
+		Iterator<Row> iterator = excelWorkSheet.iterator();
+		while (iterator.hasNext()) {
+			Row currentRow = iterator.next();
+			Iterator<Cell> cellIterator = currentRow.iterator();
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				Object value = cellToType(cell);
+				System.out.print("\t" + value);
+			}
+			System.out.println();
+        }
+		inputStream.close();
 	}
 	
 	public static int getRowCount() {
@@ -77,37 +96,6 @@ public class SeleniumUtilities {
 	        default:
 	        return null;
 	    }
-	}
-    
-    public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
-		SeleniumUtilities.getFile(fileLocation);
-		SeleniumUtilities.getInputSteam();
-		excelWorkBook = new XSSFWorkbook(inputStream);
-		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
-		Iterator<Row> iterator = excelWorkSheet.iterator();
-		while (iterator.hasNext()) {
-			Row currentRow = iterator.next();
-			Iterator<Cell> cellIterator = currentRow.iterator();
-			while (cellIterator.hasNext()) {
-				Cell cell = cellIterator.next();
-				Object value = cellToType(cell);
-				System.out.print("\t" + value);
-			}
-			System.out.println();
-        }
-		inputStream.close();
-	}
-    
-	public static String getProperties(String locatorName) {		
-		try {
-			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
-			SeleniumUtilities.getInputSteam();
-			property = new Properties();
-			property.load(inputStream);		
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return property.getProperty(locatorName);
 	}    
 	
 	public static double getExcelNumericData(Cell cell) {
@@ -128,7 +116,19 @@ public class SeleniumUtilities {
 	public static boolean getExcelBooleanData(Cell cell) {
 		boolean getExcelBooleanData = cell.getBooleanCellValue();
 		return getExcelBooleanData;
-	}	
+	}
+    
+	public static String getProperties(String locatorName) {	
+		try {
+			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
+			SeleniumUtilities.getInputSteam();
+			property = new Properties();
+			property.load(inputStream);		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return property.getProperty(locatorName);
+	}
 	
 	public static void captureScreenshot(ITestResult result, WebDriver driver) throws WebDriverException, Exception {
 		String location = SeleniumUtilities.getProperties("screenshotLocation");
