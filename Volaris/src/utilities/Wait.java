@@ -15,7 +15,7 @@ public class Wait {
 	public static WebDriverWait explicitWait;
 	
 	public static int timeUnitParsing() {
-		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
+		int timeUnit = Integer.parseInt(SeleniumUtilities.getProperties("waitTimeUnit"));
 		explicitWait = new WebDriverWait(driver, timeUnit);
 		return timeUnit;
 	}
@@ -61,7 +61,7 @@ public class Wait {
 	}
 	
 	public static void implicitWait(WebDriver driver) {
-		int timeUnit = Integer.parseInt(ConfigFileReader.getLocator("waitTimeUnit"));
+		int timeUnit = Integer.parseInt(SeleniumUtilities.getProperties("waitTimeUnit"));
 		driver.manage().timeouts().implicitlyWait(timeUnit, TimeUnit.SECONDS);
 	}
 }

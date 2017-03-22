@@ -1,12 +1,12 @@
 package verifyTest;
 
 import org.testng.annotations.Test;
-import utilities.SelectBrowser;
+import utilities.BrowserUtilities;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
-@Listeners(utilities.Screenshot_ITest.class)
+@Listeners(utilities.ScreenshotITest.class)
 
 public class ScreenTest {
 	WebDriver driver;
@@ -14,7 +14,7 @@ public class ScreenTest {
 	@Test
 	public void TesttoFail(String browser) throws Exception {
 		//String browser = SeleniumUtilities.getProperties("firefoxBrowser");		
-		driver = SelectBrowser.StartBrowser(browser, driver);	
+		driver = BrowserUtilities.getBrowser();	
 		//SeleniumUtilities.setExcelFile(SeleniumUtilities.getProperties("excelFileLocation"), 0);
 	}
 	

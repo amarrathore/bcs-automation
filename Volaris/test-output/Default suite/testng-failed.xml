@@ -5,6 +5,7 @@
     <classes>
       <class name="verifyTest.Testing">
         <methods>
+          <include name="tearDown"/>
           <include name="testToFail"/>
         </methods>
       </class> <!-- verifyTest.Testing -->

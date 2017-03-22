@@ -9,6 +9,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.testng.ITestResult;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,7 +33,7 @@ public class SeleniumUtilities {
 	public static XSSFRow row;
 	public static XSSFCell cell;
 	public static FileOutputStream outputStream;
-	public static WebDriver driver;
+	//public static WebDriver driver;
 	
 	public static File getFile(String fileLocation) {
 		try {
@@ -97,27 +99,6 @@ public class SeleniumUtilities {
 		inputStream.close();
 	}
     
-    
-    
-    
-    public static void setCellData(String result, XSSFRow row, int colNum, String fileTestData) throws Exception {
-
-		cell = row.createCell(colNum);
-		cell.setCellValue(result);
-		SeleniumUtilities.writeData(fileTestData);
-	}
-    
-    public static void writeData(String fileTestData) throws Exception {
-    	outputStream = new FileOutputStream(fileTestData);
-    	excelWorkBook.write(outputStream);
-		outputStream.flush();
-		outputStream.close();
-	}
-    
-    
-    
-    
-    
 	public static String getProperties(String locatorName) {		
 		try {
 			SeleniumUtilities.getFile(System.getProperty("user.dir") + "/src/config.properties");
@@ -150,5 +131,15 @@ public class SeleniumUtilities {
 		return getExcelBooleanData;
 	}	
 	
-	
+	public static void captureScreenshot(ITestResult result, WebDriver driver) throws WebDriverException, Exception {
+		String location = SeleniumUtilities.getProperties("screenshotLocation");
+    	String methodName = result.getName().toString().trim();    	
+    	String timeStamp = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss").format(new Date()) + "_";    	
+		File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);		
+	 	try {
+	 		FileUtils.copyFile(sourceFile, new File(location + timeStamp + methodName + ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
 } 

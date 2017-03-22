@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="10382" started-at="2017-03-21T10:14:20Z" finished-at="2017-03-21T10:14:30Z">
+  <suite name="Default suite" duration-ms="61183" started-at="2017-03-22T05:36:43Z" finished-at="2017-03-22T05:37:44Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="10382" started-at="2017-03-21T10:14:20Z" finished-at="2017-03-21T10:14:30Z">
+    <test name="Default test" duration-ms="61183" started-at="2017-03-22T05:36:43Z" finished-at="2017-03-22T05:37:44Z">
       <class name="verifyTest.Testing">
-        <test-method status="FAIL" signature="testToFail()[pri:0, instance:verifyTest.Testing@1e88b3c]" name="testToFail" duration-ms="10321" started-at="2017-03-21T15:44:20Z" finished-at="2017-03-21T15:44:30Z">
+        <test-method status="FAIL" signature="testToFail()[pri:0, instance:verifyTest.Testing@5e3a8624]" name="testToFail" duration-ms="54950" started-at="2017-03-22T11:06:43Z" finished-at="2017-03-22T11:07:38Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -18,7 +18,7 @@
 	at org.testng.Assert.failNotEquals(Assert.java:496)
 	at org.testng.Assert.assertTrue(Assert.java:42)
 	at org.testng.Assert.assertTrue(Assert.java:52)
-	at verifyTest.Testing.testToFail(Testing.java:30)
+	at verifyTest.Testing.testToFail(Testing.java:35)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -49,6 +49,10 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testToFail -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:verifyTest.Testing@5e3a8624]" name="tearDown" is-config="true" duration-ms="3998" started-at="2017-03-22T11:07:40Z" finished-at="2017-03-22T11:07:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
       </class> <!-- verifyTest.Testing -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

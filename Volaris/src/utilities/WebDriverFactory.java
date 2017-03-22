@@ -2,6 +2,6 @@ package utilities;
 
 import org.openqa.selenium.WebDriver;
 
-public class DriverInheritedToScreenShotFunction {
+public class WebDriverFactory {
 	public static WebDriver driver;
 }

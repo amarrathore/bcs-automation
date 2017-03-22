@@ -1,18 +1,20 @@
 package verifyTest;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utilities.Screenshot_ITest;
+import utilities.BrowserUtilities;
+import utilities.SeleniumUtilities;
+import utilities.WebDriverFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-@Listeners(utilities.Screenshot_ITest.class)
-public class Testing {
-	
-	static WebDriver driver;
+@Listeners(utilities.ScreenshotITest.class)
+public class Testing extends WebDriverFactory {	
+
 	@Test
 	public void testToFail() {
 		/*PropertyConfigurator.configure(this.getClass().getClassLoader().getResource("log4j.properties"));
@@ -26,16 +28,19 @@ public class Testing {
 		logInfo.error("error");
 		logInfo.fatal("fatal");*/
 		
-		try {
-			System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
-			driver=new ChromeDriver();
-			driver.get("http://www.google.com");
+		try {			
+			driver = BrowserUtilities.getBrowser();
+			driver.get(SeleniumUtilities.getProperties("URL"));			
 			System.out.println("This method is working fine");
 			Assert.assertTrue(false);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//onTestFailure(new ITestResult(),driver);
+			e.printStackTrace();
 		}		
+		
+	}
+	@AfterTest
+	public void tearDown()
+	{
 		driver.quit();
 	}
 }
