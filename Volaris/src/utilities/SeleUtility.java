@@ -79,6 +79,8 @@ public class SeleUtility {
 	}
 	
     
+    
+    
     public static void setCellData(String result, XSSFRow newRow, int colNum, String FileTestData) throws Exception {
 		cell = newRow.createCell(colNum);
 		cell.setCellValue(result);
