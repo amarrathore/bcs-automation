@@ -39,7 +39,6 @@ public class SeleUtility {
 	public static String fileName = null;
 	public static String reportPath = null;
 	public static String sheetName = "Details";
-
 	
 	public static File getFile(String fileLocation) {
 		try {

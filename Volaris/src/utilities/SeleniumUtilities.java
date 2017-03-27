@@ -85,7 +85,7 @@ public class SeleniumUtilities {
     	switch (cell.getCellType()) {
     	case Cell.CELL_TYPE_NUMERIC:
 			if (DateUtil.isCellDateFormatted(cell)) {
-                return getExcelDateValue(cell);
+                return getExcelDateData(cell);
             } else {
             	return getExcelNumericData(cell);
             }		
@@ -103,7 +103,7 @@ public class SeleniumUtilities {
 		return getExcelNumericData;
 	}
 	
-	private static Date getExcelDateValue(Cell cell) {
+	private static Date getExcelDateData(Cell cell) {
 		Date getExcelDateData = cell.getDateCellValue();
 		return getExcelDateData;
 	}
