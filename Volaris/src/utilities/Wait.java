@@ -20,7 +20,7 @@ public class Wait {
 		return timeUnit;
 	}
 	
-	public static void explicitWaitId(WebDriver driver, String inspectElementId) {		
+	public static void explicitWaitId(WebDriver driver, String inspectElementId) {
 		Wait.timeUnitParsing();
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id(inspectElementId)));
 	}

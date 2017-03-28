@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Listeners(utilities.ScreenshotITest.class)
-public class Testing extends WebDriverFactory {	
+public class Testing extends WebDriverFactory {
 
 	@Test
 	public void testScreenshot() {

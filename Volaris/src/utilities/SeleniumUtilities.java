@@ -16,9 +16,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 /**
  * @author BCS Technology
@@ -33,11 +39,14 @@ public class SeleniumUtilities {
 	public static XSSFRow row;
 	public static XSSFCell cell;
 	public static FileOutputStream outputStream;
+	public static Connection connect;
+	public static Statement statement;
+	public static ResultSet result;
 	
 	public static File getFile(String fileLocation) {
 		try {
 			file = new File(fileLocation);
-		} catch (Exception e) {			
+		} catch (Exception e) {		
 			e.printStackTrace();
 		}
 		return file;
@@ -50,13 +59,17 @@ public class SeleniumUtilities {
 			e.printStackTrace();
 		}
 		return inputStream;
-	}	
+	}
 
     public static void setExcelFile(String fileLocation, int excelSheetNumber) throws IOException {
-		SeleniumUtilities.getFile(fileLocation);
-		SeleniumUtilities.getInputSteam();
-		excelWorkBook = new XSSFWorkbook(inputStream);
-		excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
+		try {
+			SeleniumUtilities.getFile(fileLocation);
+			SeleniumUtilities.getInputSteam();
+			excelWorkBook = new XSSFWorkbook(inputStream);
+			excelWorkSheet = excelWorkBook.getSheetAt(excelSheetNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 		Iterator<Row> iterator = excelWorkSheet.iterator();
 		while (iterator.hasNext()) {
 			Row currentRow = iterator.next();
@@ -140,5 +153,32 @@ public class SeleniumUtilities {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
+	
+	public static void setDBConnection(String DBConnectionURL, String DBUserName, String DBPassword) throws Exception {
+		try {
+			String DBClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+			Class.forName(DBClass).newInstance();
+			connect = DriverManager.getConnection(DBConnectionURL, DBUserName, DBPassword);
+			if(connect != null) {
+				System.out.println("Database connection is established");
+			}
+			else {
+				System.out.println("Database connection is not established");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static List<String> getSQLQuery(String query) throws Exception {
+		statement = connect.createStatement();
+		result = statement.executeQuery(query);
+		List<String> values = new ArrayList<String>();
+		while(result.next()) {
+			values.add(result.getString(1).toString().trim());
+			System.out.println(result.getString(1));
+		}
+		return values;
+	}
 } 
