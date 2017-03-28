@@ -11,6 +11,7 @@ public class DatabaseConnection {
 	public static Connection connect;
 	public static Statement statement;
 	public static ResultSet result;
+	
 	public static void setDBConnection(String DBConnectionURL, String DBUserName, String DBPassword) throws Exception {
 		try {
 			String DBClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
