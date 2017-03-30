@@ -25,7 +25,7 @@ public class Wait {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id(inspectElementId)));
 	}
 	
-	public static void explicitWaitClassName(WebDriver driver, String inspectElementId) {
+	public static void explicitWaitClass(WebDriver driver, String inspectElementId) {
 		Wait.timeUnitParsing();
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.className(inspectElementId)));
 	}
@@ -43,11 +43,6 @@ public class Wait {
 	public static void explicitWaitTagName(WebDriver driver, String inspectElementId) {
 		Wait.timeUnitParsing();
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.tagName(inspectElementId)));
-	}
-	
-	public static void explicitWaitPartialLinkText(WebDriver driver, String inspectElementId) {
-		Wait.timeUnitParsing();
-		explicitWait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(inspectElementId)));
 	}
 	
 	public static void explicitWaitCssSelector(WebDriver driver, String inspectElementId) {
