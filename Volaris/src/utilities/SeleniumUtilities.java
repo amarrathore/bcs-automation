@@ -26,7 +26,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 /**
  * @author BCS Technology
  * 
@@ -83,7 +82,7 @@ public class SeleniumUtilities {
 	}
 	
 	public static int getRowCount() {
-		int rowCount = excelWorkSheet.getLastRowNum()-1;
+		int rowCount = excelWorkSheet.getLastRowNum();
 		return rowCount;
 	}
 	
@@ -139,7 +138,7 @@ public class SeleniumUtilities {
 			SeleniumUtilities.getFile(reportPath);
 			SeleniumUtilities.getInputSteam();
 			excelWorkBook = new XSSFWorkbook(inputStream);
-			excelWorkSheet = excelWorkBook.getSheet("Details");	
+			excelWorkSheet = excelWorkBook.getSheetAt(0);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -166,20 +165,15 @@ public class SeleniumUtilities {
 			} else {
 				cell.setCellValue(newResult);
 			}
-			outputStream = new FileOutputStream(newFileTestData);
-			excelWorkBook.write(outputStream);
-			XSSFFormulaEvaluator.evaluateAllFormulaCells(excelWorkBook);	
-			outputStream.flush();
-			outputStream.close();
+			SeleniumUtilities.writeData(newFileTestData);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void setCellData(String newResult, XSSFRow newRow, int colNum, String fileTestData) throws Exception {
+	public static void setCellData(String newResult, XSSFRow newRow, int colNum) throws Exception {
 		XSSFCell Cell = newRow.createCell(colNum);
-		Cell.setCellValue(newResult);
-		SeleniumUtilities.writeData(fileTestData);
+		Cell.setCellValue(newResult);		
 	}
 	
 	public static void writeData(String newFileTestData) throws Exception {
@@ -193,11 +187,11 @@ public class SeleniumUtilities {
 		String newResult, slNumber;
 		try {
 			SeleniumUtilities.setExcel();
-			int rowNo = SeleniumUtilities.getRowCount() + 1;
+			int rowNo = SeleniumUtilities.getRowCount()+1;
 			System.out.println("rowcount" + rowNo);
 			XSSFRow newRow = SeleniumUtilities.getRow(rowNo);
 			int newSlNumber = 0;
-			slNumber = SeleniumUtilities.getCellData(rowNo, 0);
+			slNumber = SeleniumUtilities.getCellData(rowNo-1, 0);
 			if(slNumber.equalsIgnoreCase("Sl No")) {
 				newSlNumber = newSlNumber + 1;
 			} else {
@@ -206,20 +200,21 @@ public class SeleniumUtilities {
 			}
 			slNumber = Integer.toString(newSlNumber);
 			int colNo = 0;
-			SeleniumUtilities.setCellData(slNumber, newRow, colNo, reportPath);
+			SeleniumUtilities.setCellData(slNumber, newRow, colNo);
 			colNo = colNo + 1;
-			SeleniumUtilities.setStaticCellData(description, rowNo, colNo, reportPath);
+			SeleniumUtilities.setCellData(description, newRow, colNo);			
 			colNo = colNo + 1;
-			SeleniumUtilities.setStaticCellData(moduleName, rowNo, colNo, reportPath);
+			SeleniumUtilities.setCellData(moduleName, newRow, colNo);
 			if(boolResult == true) {
 				newResult = "Pass";
 			} else {
 				newResult = "FAIL";
 			}
 			colNo = colNo + 1;
-			SeleniumUtilities.setStaticCellData(newResult, rowNo, colNo, reportPath);
+			SeleniumUtilities.setCellData(newResult, newRow, colNo);
 			colNo = colNo + 1;
-			SeleniumUtilities.setStaticCellData(attachment, rowNo, colNo, reportPath);			
+			SeleniumUtilities.setCellData(attachment, newRow, colNo);
+			SeleniumUtilities.writeData(reportPath);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -276,5 +271,4 @@ public class SeleniumUtilities {
 		}
 		return values;
 	}
-
 } 
