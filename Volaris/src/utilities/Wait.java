@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author BCS Technology
  * 
  */
-public class Wait {
-	public static WebDriver driver;
+public class Wait extends WebDriverFactory {	
 	public static WebDriverWait explicitWait;
 	
 	public static int timeUnitParsing() {

@@ -30,7 +30,7 @@ import java.util.Properties;
  * @author BCS Technology
  * 
  */
-public class SeleniumUtilities {
+public class SeleniumUtilities extends WebDriverFactory {
 	public static File file;
 	public static FileInputStream inputStream;
 	public static XSSFWorkbook excelWorkBook;
@@ -43,7 +43,7 @@ public class SeleniumUtilities {
 	public static Statement statement;
 	public static ResultSet resultSet;
 	private static String reportPath = null;
-	
+		
 	public static File getFile(String fileLocation) {
 		try {
 			file = new File(fileLocation);

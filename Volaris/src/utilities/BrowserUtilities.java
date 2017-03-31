@@ -58,8 +58,7 @@ public class BrowserUtilities extends WebDriverFactory {
 		DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
 		chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, option);
 		chromeCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
-		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
-		driver.manage().deleteAllCookies();
+		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");		
 		return driver = new ChromeDriver(chromeCapabilities);
 	}
 	
@@ -69,8 +68,6 @@ public class BrowserUtilities extends WebDriverFactory {
 		IECapabilities.setCapability("ignoreZoomSetting", true);
 		IECapabilities.setCapability("nativeEvents", false);
 		IECapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-		System.setProperty("webdriver.ie.driver", "./Driver/IEDriverServer.exe");
-		driver.manage().deleteAllCookies();
 		return driver = new InternetExplorerDriver(IECapabilities);
 	}
 }

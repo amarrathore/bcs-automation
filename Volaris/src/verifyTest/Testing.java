@@ -5,17 +5,19 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.BrowserUtilities;
+import utilities.MouseEvent;
 import utilities.SeleniumUtilities;
 import utilities.WebDriverFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 @Listeners(utilities.ScreenshotITest.class)
 public class Testing extends WebDriverFactory {
 
-	@Test
+	@Test(enabled = false)
 	public void testScreenshot() {
 		/*PropertyConfigurator.configure(this.getClass().getClassLoader().getResource("log4j.properties"));
 		//PropertyConfigurator.configure("log4j.properties");

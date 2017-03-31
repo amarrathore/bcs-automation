@@ -3,12 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="verifyTest.ScreenTest">
+      <class name="verifyTest.TestMouseHover">
         <methods>
-          <include name="TesttoFail"/>
-          <include name="afterClass"/>
+          <include name="test"/>
         </methods>
-      </class> <!-- verifyTest.ScreenTest -->
+      </class> <!-- verifyTest.TestMouseHover -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
