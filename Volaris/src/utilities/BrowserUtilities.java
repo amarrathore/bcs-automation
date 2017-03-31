@@ -41,6 +41,7 @@ public class BrowserUtilities extends WebDriverFactory {
 		firefoxCapabilities.setCapability("unexpectedAlertBehaviour", "ignore");
 		firefoxCapabilities.setCapability(ChromeOptions.CAPABILITY, myprofile);
 		System.setProperty("webdriver.gecko.driver", "./Driver/geckodriver.exe");
+		driver.manage().deleteAllCookies();
 		return driver = new FirefoxDriver(firefoxCapabilities);
 	}
 	
@@ -58,6 +59,7 @@ public class BrowserUtilities extends WebDriverFactory {
 		chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, option);
 		chromeCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
 		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+		driver.manage().deleteAllCookies();
 		return driver = new ChromeDriver(chromeCapabilities);
 	}
 	
@@ -68,6 +70,7 @@ public class BrowserUtilities extends WebDriverFactory {
 		IECapabilities.setCapability("nativeEvents", false);
 		IECapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
 		System.setProperty("webdriver.ie.driver", "./Driver/IEDriverServer.exe");
+		driver.manage().deleteAllCookies();
 		return driver = new InternetExplorerDriver(IECapabilities);
 	}
 }
