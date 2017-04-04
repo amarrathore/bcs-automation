@@ -5,7 +5,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.BrowserUtilities;
-import utilities.MouseEvent;
 import utilities.SeleniumUtilities;
 import utilities.WebDriverFactory;
 import org.apache.log4j.Logger;
