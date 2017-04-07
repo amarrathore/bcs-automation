@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @Listeners(utilities.ScreenshotITest.class)
 public class Testing extends WebDriverFactory {
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testScreenshot() {
 		/*PropertyConfigurator.configure(this.getClass().getClassLoader().getResource("log4j.properties"));
 		//PropertyConfigurator.configure("log4j.properties");
@@ -28,7 +28,7 @@ public class Testing extends WebDriverFactory {
 		logInfo.warn("warn");
 		logInfo.error("error");
 		logInfo.fatal("fatal");*/
-		try {			
+		try {
 			driver = BrowserUtilities.getBrowser(SeleniumUtilities.getProperties("browser"));
 			driver.get(SeleniumUtilities.getProperties("URL"));		
 			
