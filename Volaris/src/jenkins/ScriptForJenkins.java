@@ -15,7 +15,7 @@ public class ScriptForJenkins extends WebDriverFactory {
 	
 	@Test
 	public void test() throws Exception {	
-		try {			
+		try {
 			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");		
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
@@ -68,7 +68,6 @@ public class ScriptForJenkins extends WebDriverFactory {
 			select4.selectByVisibleText("Mexico");
 			driver.findElement(By.id("volarisPassengers_0__Info_Gender_Male")).click();
 			driver.findElement(By.cssSelector("span:contains('Use FIRST passenger's')")).click();
-			Assert.assertTrue(false);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
