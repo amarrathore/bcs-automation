@@ -1,6 +1,5 @@
 package jenkins;
 
-import org.testng.Assert;
 import org.testng.annotations.*;
 import java.util.Iterator;
 import java.util.Set;
@@ -14,8 +13,8 @@ public class ScriptForJenkins extends WebDriverFactory {
 	public Actions action;
 	
 	@Test
-	public void test() throws Exception {	
-		try {
+	public void test() throws Exception {
+		try {			
 			System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");		
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
@@ -35,8 +34,7 @@ public class ScriptForJenkins extends WebDriverFactory {
 			Thread.sleep(5000);
 			driver.findElement(By.id("btnPassenger")).click();
 			Thread.sleep(5000);
-			driver.findElement(By.id("btnSearchFlight")).click();
-			
+			driver.findElement(By.id("btnSearchFlight")).click();			
 			String parentWindow = driver.getWindowHandle();	    
 			Set<String> set =  driver.getWindowHandles();
 			Iterator<String> iterator = set.iterator();
@@ -45,8 +43,7 @@ public class ScriptForJenkins extends WebDriverFactory {
 				  if(!parentWindow.equals(childWindow)) {
 			    	  driver.switchTo().window(childWindow).getTitle();
 			    	  }
-			  }
-			  
+			  }			  
 			Thread.sleep(5000);
 			driver.findElement(By.xpath("//*[@id='sortedAvailability0']/div[1]/div[1]/div[1]/div[2]")).click();
 			driver.findElement(By.id("submit_search_button")).click();
@@ -68,10 +65,10 @@ public class ScriptForJenkins extends WebDriverFactory {
 			select4.selectByVisibleText("Mexico");
 			driver.findElement(By.id("volarisPassengers_0__Info_Gender_Male")).click();
 			driver.findElement(By.cssSelector("span:contains('Use FIRST passenger's')")).click();
+			driver.quit();
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-		
+		}	
 	}
 }
