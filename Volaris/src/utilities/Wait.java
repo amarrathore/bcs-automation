@@ -19,7 +19,7 @@ public class Wait extends WebDriverFactory {
 		return timeUnit;
 	}
 	
-	public static void explicitWaitId(WebDriver driver, String inspectElementId) {
+	public static void explicitWaitId(WebDriver driver, String inspectElementId, int timeUnit) {
 		Wait.timeUnitParsing();
 		explicitWait.until(ExpectedConditions.elementToBeClickable(By.id(inspectElementId)));
 	}
