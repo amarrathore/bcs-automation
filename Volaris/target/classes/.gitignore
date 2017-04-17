@@ -1,1 +1,6 @@
+/config.properties
+/jenkins/
+/log4j.properties
+/utilities/
+/verifyTest/
 /META-INF/
